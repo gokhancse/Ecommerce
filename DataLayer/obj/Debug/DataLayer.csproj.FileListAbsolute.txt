@@ -1,0 +1,15 @@
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\DataLayer\bin\DataLayer.dll
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\DataLayer\bin\DataLayer.pdb
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\DataLayer\obj\Debug\DataLayer.dll
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\saygun\Desktop\eCommerce\DataLayer\bin\DataLayer.dll
+C:\Users\saygun\Desktop\eCommerce\DataLayer\bin\DataLayer.pdb
+C:\Users\saygun\Desktop\eCommerce\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\saygun\Desktop\eCommerce\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\saygun\Desktop\eCommerce\DataLayer\obj\Debug\DataLayer.pdb
+C:\Documents and Settings\Hakan\Desktop\eCommerce\DataLayer\bin\DataLayer.dll
+C:\Documents and Settings\Hakan\Desktop\eCommerce\DataLayer\bin\DataLayer.pdb
+C:\Documents and Settings\Hakan\Desktop\eCommerce\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Hakan\Desktop\eCommerce\DataLayer\obj\Debug\DataLayer.dll
+C:\Documents and Settings\Hakan\Desktop\eCommerce\DataLayer\obj\Debug\DataLayer.pdb

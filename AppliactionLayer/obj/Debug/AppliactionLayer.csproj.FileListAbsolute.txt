@@ -1,0 +1,21 @@
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\bin\AppliactionLayer.dll
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\bin\AppliactionLayer.pdb
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\obj\Debug\ResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.dll
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.pdb
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\bin\DataLayer.dll
+c:\users\user\documents\visual studio 2010\Projects\eCommerce\AppliactionLayer\bin\DataLayer.pdb
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\bin\AppliactionLayer.dll
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\bin\AppliactionLayer.pdb
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\bin\DataLayer.dll
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\bin\DataLayer.pdb
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.dll
+C:\Users\saygun\Desktop\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.pdb
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\bin\AppliactionLayer.dll
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\bin\AppliactionLayer.pdb
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\bin\DataLayer.dll
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\bin\DataLayer.pdb
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.dll
+C:\Documents and Settings\Hakan\Desktop\eCommerce\AppliactionLayer\obj\Debug\AppliactionLayer.pdb

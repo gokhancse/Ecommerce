@@ -1,0 +1,185 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="eCommerce.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title></title>
+	<asp:ContentPlaceHolder ID="head" runat="server">
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<script src="js/boxOver.js" type="text/javascript"></script>
+	</asp:ContentPlaceHolder>
+</head>
+<body>
+<form runat="server">
+<div id="main_container">
+	<div id="header">
+	</div>
+   <div id="main_content"> 
+			<div id="menu_tab">
+					<ul class="menu">
+						 <li><a href="default.aspx" class="nav"><%=kelime["1"] %></a></li>
+						 <li class="divider"></li>
+						 <li><a href="products.aspx" class="nav"><%=kelime["2"] %></a></li>
+						 <li class="divider"></li>
+						 <li><a href="productscampaigns.aspx" class="nav"><%=kelime["3"] %></a></li>
+						 <li class="divider"></li>
+						 <li><a href="account.aspx" class="nav"><%=kelime["4"] %></a></li>
+						 <li class="divider"></li>
+						 <li><a href="signup.aspx" class="nav"><%=kelime["6"] %></a></li>
+					
+						 <asp:Panel ID="Panel1" runat="server">
+						  <li><a href="signin.aspx" class="nav"><%=kelime["7"] %></a></li>
+						  <li class="divider"></li>
+						  </asp:Panel>
+						<asp:Panel ID="Panel2"  Visible="false" runat="server">
+						  <asp:LinkButton CssClass="nav" PostBackUrl="~/default.aspx" ID="LinkButton1"  
+								runat="server" onclick="LinkButton1_Click"><%=kelime["8"] %></asp:LinkButton>
+						 <li class="divider"></li>  
+						</asp:Panel>      
+						<asp:Panel ID="panelship" runat="server" Visible="false">
+						 <li class="divider"></li>
+						</asp:Panel>                
+						 <li><a href="contact.aspx" class="nav"><%=kelime["9"] %></a></li>
+					   	 <li class="divider"></li>
+                             <asp:ImageButton ID="ImageButton1" runat="server"  Height="15" Width="20"
+                                 onclick="ImageButton1_Click" />
+                        <li class="divider"></li>
+					</ul>
+
+			</div><!-- end of menu tab -->
+			
+	<div class="crumb_navigation">
+	</div>        
+	
+   <div class="left_content">
+	<div class="title_box"><%=kelime["14"] %></div>
+	
+		<ul class="left_menu">
+			<asp:ListView ID="ListViewCategories" runat="server">
+			<ItemTemplate>
+			<li class="even"><a href="productcategories.aspx?CAT_ID=<%# Eval("CAT_ID")%>"><%#s.DileGoreGetir(Eval("CAT_Name").ToString(),Eval("CAT_Name_ENG").ToString())%></a></li>
+			</ItemTemplate>
+			</asp:ListView>  
+		</ul> 
+		
+		
+
+	   <asp:ListView ID="ListViewCampaignProducts" OnItemCommand="ProductItemCommand" runat="server">
+	  
+	   <ItemTemplate>
+		<div class="border_box">
+		<div class="product_title"><asp:LinkButton ID="LinkButton4" CommandName="ProductDetail" CommandArgument='<%#Eval("PIC_ProdID")%>' runat="server"><%#Eval("PIC_ProdName")%></asp:LinkButton></div> 
+		 <div class="product_img"><asp:LinkButton ID="LinkButton3"  CommandName="ProductDetail" CommandArgument='<%#Eval("PIC_ProdID")%>' runat="server">
+			   <asp:Image ID="Image1" Width ="120" Height="120" ImageUrl='<%#Eval("PIC_PictureURL")%>' runat="server" BorderStyle="None" /></asp:LinkButton></div>
+		 <div class="prod_price"><span class="reduce"><%#Eval("PIC_ProdOldPrice")%></span> <span class="price"><%#Eval("PIC_ProdPrice")%></span></div>
+	 </div>  
+	   </ItemTemplate>
+	   
+	 </asp:ListView>
+ 
+	
+   </div><!-- end of left content -->
+	   <asp:ContentPlaceHolder ID="Content" runat="server">
+	   </asp:ContentPlaceHolder>
+
+ <div class="right_content">
+ 
+	  <div class="title_box"><%=kelime["15"] %></div>  
+	 <div class="border_box">
+		 <asp:TextBox ID="txtSearch" class="newsletter_input"  runat="server"></asp:TextBox>
+		 <asp:Button ID="btnSearch" runat="server" Width="50" CssClass="join" 
+			 Font-Size="8pt" onclick="btnSearch_Click" />
+
+	 </div>  
+	 <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="0">
+	 </asp:ScriptManager>
+	 <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
+	
+	<ContentTemplate>
+	
+		<div class="shopping_cart">
+			<div class="title_box"><%=kelime["16"] %></div>
+			
+			<div class="cart_details">
+				<asp:Label ID="LblItemCount" runat="server" Text="Sepetinizde Ürün Yok"></asp:Label> <br />
+			<span class="border_cart"></span>
+			Total: <span class="price">
+				<asp:Label ID="LblTotalPrice" runat="server" Text="0"></asp:Label> </span>
+			</div>
+
+		</div>
+		
+		 
+		 
+	 </ContentTemplate>
+<%--     	<Triggers>
+			<asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+		</Triggers>--%>
+		 
+	</asp:UpdatePanel>
+	   <%--<asp:Timer ID="Timer1" OnTick="Timer1_Tick" Interval="1000" runat="server">
+		 </asp:Timer>--%>
+
+	
+		 <asp:ListView ID="ListViewMostSaled" OnItemCommand="ProductItemCommand" runat="server">
+		 <ItemTemplate>
+		  <div class="border_box">
+		<div style="width: 35px; float: left; height: 35px;">
+		 <div class="product_img"><asp:Image ID="Image9" runat="server"  src='<%#Eval("PIC_PictureURL")%>' height="30" width="30" alt="" title="" border="0" /></div>
+			</div>
+			<div  >
+	 <div class="product_title"><asp:LinkButton ID="LinkButton4" CommandName="ProductDetail" CommandArgument='<%#Eval("PIC_ProdID")%>' runat="server"><%#Eval("PIC_ProdName")%></asp:LinkButton></div> 
+		<div class="prod_price"><span class="reduce"><%#Eval("PIC_ProdOldPrice")%></span> <span class="price"><%#Eval("PIC_ProdPrice")%></span></div>
+	 </div>	  
+	 </div> 
+		 </ItemTemplate>
+		 </asp:ListView>
+	   
+
+	<div class="title_box"><%=kelime["17"] %></div>
+	
+		<ul class="left_menu">
+			<asp:ListView ID="ListViewManufacturers" runat="server">
+			<ItemTemplate>
+			<li class="even"><a href="productbrands.aspx?MAN_ID=<%# Eval("MAN_ID")%>"><%#Eval("MAN_Name")%></a></li>
+			</ItemTemplate>
+			</asp:ListView>
+		
+		</ul>      
+	 
+      
+	 
+   </div><!-- end of right content -->   
+			
+   </div><!-- end of main content -->
+ 
+   <div class="footer">
+
+		<div class="left_footer">
+			
+		<asp:Image ID="Image6" runat="server"  src="images/footer_logo.png" alt="" title="" width="89" height="42"/>
+		</div>
+		
+		<div class="center_footer">
+		Template name. All Rights Reserved 2008<br />
+			
+		<a href="#" title="free css templates"><asp:Image ID="Image7" runat="server" src="images/csscreme.jpg" alt="free css templates" border="0" /></a><br />
+			
+		<asp:Image ID="Image8" runat="server" src="images/payment.gif" alt="" title="" />
+		</div>
+		
+   </div>                 
+
+</div>
+<!-- end of main_container -->
+</form>	
+</body>
+</html>
+
+
+ 
+
+
+				
+		   

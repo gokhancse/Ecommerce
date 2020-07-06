@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ECOM_DBase" Class="eCommerceDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=ECOM_DBase;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ECOM_DBaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ADDR_ADDRESS" Member="ADDR_ADDRESSes">
+    <Type Name="ADDR_ADDRESS">
+      <Column Name="ADDR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ADDR_Alias" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_TownID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_Address" Member="ADDR_Address1" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ADDR_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ADDR_GSM" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ADDR_ADDRESS_ORDER_ORDER" Member="ORDER_ORDERs" ThisKey="ADDR_ID" OtherKey="ORDER_AddressID" Type="ORDER_ORDER" />
+      <Association Name="TOWN_TOWN_ADDR_ADDRESS" Member="TOWN_TOWN" ThisKey="ADDR_TownID" OtherKey="TOWN_ID" Type="TOWN_TOWN" IsForeignKey="true" />
+      <Association Name="USER_USER_ADDR_ADDRESS" Member="USER_USER" ThisKey="ADDR_UserID" OtherKey="USER_ID" Type="USER_USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BASKT_BASKET" Member="BASKT_BASKETs">
+    <Type Name="BASKT_BASKET">
+      <Column Name="BASKT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BASKT_UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BASKT_ProdID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BASKT_Unit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PROD_PRODUCT_BASKT_BASKET" Member="PROD_PRODUCT" ThisKey="BASKT_ProdID" OtherKey="PROD_ID" Type="PROD_PRODUCT" IsForeignKey="true" />
+      <Association Name="USER_USER_BASKT_BASKET" Member="USER_USER" ThisKey="BASKT_UserID" OtherKey="USER_ID" Type="USER_USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CITY_CITY" Member="CITY_CITies">
+    <Type Name="CITY_CITY">
+      <Column Name="CITY_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CITY_CountryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CITY_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="CITY_CITY_TOWN_TOWN" Member="TOWN_TOWNs" ThisKey="CITY_ID" OtherKey="TOWN_CityID" Type="TOWN_TOWN" />
+      <Association Name="CNTR_COUNTRY_CITY_CITY" Member="CNTR_COUNTRY" ThisKey="CITY_CountryID" OtherKey="CNTR_ID" Type="CNTR_COUNTRY" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAT_CATEGORY" Member="CAT_CATEGORies">
+    <Type Name="CAT_CATEGORY">
+      <Column Name="CAT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CAT_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CAT_ParentCatID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CAT_Icon" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CAT_Name_ENG" Type="System.String" CanBeNull="false" />
+      <Association Name="CAT_CATEGORY_CAT_CATEGORY" Member="CAT_CATEGORies" ThisKey="CAT_ID" OtherKey="CAT_ParentCatID" Type="CAT_CATEGORY" />
+      <Association Name="CAT_CATEGORY_COUP_COUPON" Member="COUP_COUPONs" ThisKey="CAT_ID" OtherKey="COUP_CategoryID" Type="COUP_COUPON" />
+      <Association Name="CAT_CATEGORY_PROD_PRODUCT" Member="PROD_PRODUCTs" ThisKey="CAT_ID" OtherKey="PROD_CatID" Type="PROD_PRODUCT" />
+      <Association Name="CAT_CATEGORY_CAT_CATEGORY" Member="CAT_CATEGORY1" ThisKey="CAT_ParentCatID" OtherKey="CAT_ID" Type="CAT_CATEGORY" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CNTR_COUNTRY" Member="CNTR_COUNTRies">
+    <Type Name="CNTR_COUNTRY">
+      <Column Name="CNTR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CNTR_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="CNTR_COUNTRY_CITY_CITY" Member="CITY_CITies" ThisKey="CNTR_ID" OtherKey="CITY_CountryID" Type="CITY_CITY" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COMM_COMMENT" Member="COMM_COMMENTs">
+    <Type Name="COMM_COMMENT">
+      <Column Name="COMM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="COMM_ProdID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COMM_UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COMM_Tittle" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="COMM_Message" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="COMM_Vote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PROD_PRODUCT_COMM_COMMENT" Member="PROD_PRODUCT" ThisKey="COMM_ProdID" OtherKey="PROD_ID" Type="PROD_PRODUCT" IsForeignKey="true" />
+      <Association Name="USER_USER_COMM_COMMENT" Member="USER_USER" ThisKey="COMM_UserID" OtherKey="USER_ID" Type="USER_USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COUP_COUPON" Member="COUP_COUPONs">
+    <Type Name="COUP_COUPON">
+      <Column Name="COUP_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="COUP_UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COUP_CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COUP_Pass" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="COUP_Value" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="COUP_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="CAT_CATEGORY_COUP_COUPON" Member="CAT_CATEGORY" ThisKey="COUP_CategoryID" OtherKey="CAT_ID" Type="CAT_CATEGORY" IsForeignKey="true" />
+      <Association Name="USER_USER_COUP_COUPON" Member="USER_USER" ThisKey="COUP_UserID" OtherKey="USER_ID" Type="USER_USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DETOR_ORDERDETAIL" Member="DETOR_ORDERDETAILs">
+    <Type Name="DETOR_ORDERDETAIL">
+      <Column Name="DETOR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DETOR_OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DETOR_ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DETOR_Unit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ORDER_ORDER_DETOR_ORDERDETAIL" Member="ORDER_ORDER" ThisKey="DETOR_OrderID" OtherKey="ORDER_ID" Type="ORDER_ORDER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MAN_MANUFACTURER" Member="MAN_MANUFACTURERs">
+    <Type Name="MAN_MANUFACTURER">
+      <Column Name="MAN_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MAN_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAN_Picture" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MAN_StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MAN_EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MAN_MANUFACTURER_PROD_PRODUCT" Member="PROD_PRODUCTs" ThisKey="MAN_ID" OtherKey="PROD_ManID" Type="PROD_PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ORDER_ORDER" Member="ORDER_ORDERs">
+    <Type Name="ORDER_ORDER">
+      <Column Name="ORDER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ORDER_UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ORDER_AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ORDER_TotalPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ORDER_Tax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ORDER_ShortInfo" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="ORDER_ORDER_DETOR_ORDERDETAIL" Member="DETOR_ORDERDETAILs" ThisKey="ORDER_ID" OtherKey="DETOR_OrderID" Type="DETOR_ORDERDETAIL" />
+      <Association Name="ADDR_ADDRESS_ORDER_ORDER" Member="ADDR_ADDRESS" ThisKey="ORDER_AddressID" OtherKey="ADDR_ID" Type="ADDR_ADDRESS" IsForeignKey="true" />
+      <Association Name="USER_USER_ORDER_ORDER" Member="USER_USER" ThisKey="ORDER_UserID" OtherKey="USER_ID" Type="USER_USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PIC_PRODUCTPICTURE" Member="PIC_PRODUCTPICTUREs">
+    <Type Name="PIC_PRODUCTPICTURE">
+      <Column Name="PIC_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PIC_ProdID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PIC_PictureURL" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PIC_Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PROD_PRODUCT_PIC_PRODUCTPICTURE" Member="PROD_PRODUCT" ThisKey="PIC_ProdID" OtherKey="PROD_ID" Type="PROD_PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PROD_PRODUCT" Member="PROD_PRODUCTs">
+    <Type Name="PROD_PRODUCT">
+      <Column Name="PROD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROD_CatID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_ManID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_OldPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PROD_ShortInformation" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PROD_Information" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PROD_StockCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_Iscampaign" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_Like" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROD_SaleCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Member="PROD_Name_tr" Type="System.String" CanBeNull="false" />
+      <Column Member="PROD_Information_tr" Type="System.String" CanBeNull="false" />
+      <Association Name="PROD_PRODUCT_BASKT_BASKET" Member="BASKT_BASKETs" ThisKey="PROD_ID" OtherKey="BASKT_ProdID" Type="BASKT_BASKET" />
+      <Association Name="PROD_PRODUCT_COMM_COMMENT" Member="COMM_COMMENTs" ThisKey="PROD_ID" OtherKey="COMM_ProdID" Type="COMM_COMMENT" />
+      <Association Name="PROD_PRODUCT_PIC_PRODUCTPICTURE" Member="PIC_PRODUCTPICTUREs" ThisKey="PROD_ID" OtherKey="PIC_ProdID" Type="PIC_PRODUCTPICTURE" />
+      <Association Name="PROD_PRODUCT_TAG_TAG" Member="TAG_TAGs" ThisKey="PROD_ID" OtherKey="TAG_ProdID" Type="TAG_TAG" />
+      <Association Name="CAT_CATEGORY_PROD_PRODUCT" Member="CAT_CATEGORY" ThisKey="PROD_CatID" OtherKey="CAT_ID" Type="CAT_CATEGORY" IsForeignKey="true" />
+      <Association Name="MAN_MANUFACTURER_PROD_PRODUCT" Member="MAN_MANUFACTURER" ThisKey="PROD_ManID" OtherKey="MAN_ID" Type="MAN_MANUFACTURER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TAG_TAG" Member="TAG_TAGs">
+    <Type Name="TAG_TAG">
+      <Column Name="TAG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TAG_Data" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TAG_ProdID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PROD_PRODUCT_TAG_TAG" Member="PROD_PRODUCT" ThisKey="TAG_ProdID" OtherKey="PROD_ID" Type="PROD_PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TOWN_TOWN" Member="TOWN_TOWNs">
+    <Type Name="TOWN_TOWN">
+      <Column Name="TOWN_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TOWN_CityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TOWN_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TOWN_TOWN_ADDR_ADDRESS" Member="ADDR_ADDRESSes" ThisKey="TOWN_ID" OtherKey="ADDR_TownID" Type="ADDR_ADDRESS" />
+      <Association Name="TOWN_TOWN_USER_USER" Member="USER_USERs" ThisKey="TOWN_ID" OtherKey="USER_Town" Type="USER_USER" />
+      <Association Name="CITY_CITY_TOWN_TOWN" Member="CITY_CITY" ThisKey="TOWN_CityID" OtherKey="CITY_ID" Type="CITY_CITY" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USER_USER" Member="USER_USERs">
+    <Type Name="USER_USER">
+      <Column Name="USER_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USER_Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Town" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_GSM" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="USER_TYPE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USER_Activation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="USER_USER_ADDR_ADDRESS" Member="ADDR_ADDRESSes" ThisKey="USER_ID" OtherKey="ADDR_UserID" Type="ADDR_ADDRESS" />
+      <Association Name="USER_USER_BASKT_BASKET" Member="BASKT_BASKETs" ThisKey="USER_ID" OtherKey="BASKT_UserID" Type="BASKT_BASKET" />
+      <Association Name="USER_USER_COMM_COMMENT" Member="COMM_COMMENTs" ThisKey="USER_ID" OtherKey="COMM_UserID" Type="COMM_COMMENT" />
+      <Association Name="USER_USER_COUP_COUPON" Member="COUP_COUPONs" ThisKey="USER_ID" OtherKey="COUP_UserID" Type="COUP_COUPON" />
+      <Association Name="USER_USER_ORDER_ORDER" Member="ORDER_ORDERs" ThisKey="USER_ID" OtherKey="ORDER_UserID" Type="ORDER_ORDER" />
+      <Association Name="TOWN_TOWN_USER_USER" Member="TOWN_TOWN" ThisKey="USER_Town" OtherKey="TOWN_ID" Type="TOWN_TOWN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RandomView" Member="RandomViews">
+    <Type Name="RandomView">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetNewId" Method="GetNewId" IsComposable="true">
+    <Return Type="System.Guid" />
+  </Function>
+</Database>
